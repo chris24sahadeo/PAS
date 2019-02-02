@@ -1,2 +1,2 @@
 # PVA
-A parking validation app for security officers
+A parking authorization app for private parking lots
