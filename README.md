@@ -2,7 +2,7 @@ readme tutorial: https://github.com/matiassingers/awesome-readme
 
 # !!!PUT LOGO HERE!!!
 
-# PVS
+# PAS
 A parking authorization System for private parking lots
 
 # !!!MAJOR LINKS!!!
