@@ -36,13 +36,13 @@ class Distance_Sensor:
         print('Echo received')
         
         # calculate and return distance
-        distance = (end-start)/SPEED_OF_SOUND_INVERSE
+        distance = (end-start)/self.SPEED_OF_SOUND_INVERSE
         print('Obejct at distance: {}'.format(distance))
         return distance
     
     
     def object_detected(self):
-        return self.get_distance() <= MIN_OBJECT_DETECTION_DISTANCE
+        return self.get_distance() <= self.MIN_OBJECT_DETECTION_DISTANCE
         
         
     
