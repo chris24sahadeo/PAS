@@ -36,6 +36,10 @@ var Script = function () {
                     required: true,
                     email: true
                 },
+                url: {
+                    required: true,
+                    
+                },
                 topic: {
                     required: "#newsletter:checked",
                     minlength: 2

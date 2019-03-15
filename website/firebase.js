@@ -3,7 +3,7 @@
 
 //const db = firebase.firestore();
 
-
+var num = 0;
 var app_firebase = {};
 
 (function(){
