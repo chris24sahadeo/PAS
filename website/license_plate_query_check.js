@@ -24,8 +24,10 @@ var db = firebase.firestore();
     db.collection("parking_lots").get().then(function (querySnapshot) {
         var content = '';
         querySnapshot.forEach(function (doc) {
-            content = '<option>' + doc.id + '</option>';
-            $('#lot_id').append(content);
+            if (doc.exists) {
+                content = '<option>' + doc.id + '</option>';
+                $('#lot_id').append(content);
+            }
         });
     });
 })()
