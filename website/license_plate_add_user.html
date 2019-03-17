@@ -399,22 +399,51 @@
             <section class="wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>License Plate Addition/ Editing/ Removal</h3>
+                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>Add New Driver</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-                        <li><i class="fa fa-file-text-o"></i>License Plates</li>
+                        <li><i class="fa fa-file-text-o"></i>Add New Driver</li>
                     </ol>
                     </div>
                 </div>
-                <section class="panel">
-                    <header class="panel-heading">
-                        What would you like to do?
-                    </header>
-                    <div class="panel-body">
-                        <a href="license_plate_add_user.html" class="btn btn-primary btn-lg btn-block">Add New Driver</a>
-                        <a href="license_plate_search.html" class="btn btn-warning btn-lg btn-block">Edit/Remove Existing Driver</a>
+                <div class="row">
+                    <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                        Add Driver Info
+                        </header>
+                        <div class="panel-body">
+                        <form class="form-validate form-horizontal" method="GET" id="user_form">
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label">First Name <span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="fname" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label">Last Name <span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="lname" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Email <span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="email" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Phone Number <span class="required">*</span></label>
+                                <div class="col-sm-10">
+                                    <input type="number" class="form-control" id="pnumber" required/>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="submitUser()">Next</button>
+                        </form>
+                        </div>
+                    </section>
                     </div>
-                </section>
+                </div>
             <!-- page end-->
             </section>
         </section>
@@ -465,6 +494,23 @@
     <script src="js/form-component.js"></script>
     <!-- custome script for all page -->
     <script src="js/scripts.js"></script>
+
+    <!-- JS -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAdTQUpXXV6BiKJ7PmW-6doswCo9qxvNQ0",
+            authDomain: "parking-authorization-system.firebaseapp.com",
+            databaseURL: "https://parking-authorization-system.firebaseio.com",
+            projectId: "parking-authorization-system",
+            storageBucket: "parking-authorization-system.appspot.com",
+            messagingSenderId: "878965152449"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="license_plate.js"></script>
 
 
     </body>

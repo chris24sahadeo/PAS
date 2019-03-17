@@ -399,84 +399,71 @@
             <section class="wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>Add New Driver</h3>
+                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>Add New Plates</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
                         <li><i class="fa fa-file-text-o"></i>Add New Driver</li>
+                        <li><i class="fa fa-file-text-o"></i>Add New Plates</li>
                     </ol>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
                     <section class="panel">
-                        <header class="panel-heading">
-                        Add Driver Info
+                        <header id="plateHeader" class="panel-heading">
+                        Add Plate Info
                         </header>
                         <div class="panel-body">
-                        <form class="form-horizontal " method="get">
-                            <div class="form-group">
-                            <label class="col-sm-2 control-label">First Name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                            <label class="col-sm-2 control-label">Last Name</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Email</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">Phone Number</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control">
-                                </div>
-                            </div>
+                        <form class="form-horizontal " method="get" id="plate_form">
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">License Plate</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="plate" required/>
                                 </div>
                             </div>
                             <div class="form-group">
                             <label class="col-sm-2 control-label">Car Description</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" id="description" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                            <label class="col-sm-2 control-label">Parking Lot ID</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control m-bot15" id="lot_id" required>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                             <label class="col-sm-2 control-label">Vehicle Pass Type</label>
-                            <div class="col-sm-10">
-                                <select class="form-control m-bot15">
-                                    <option>Full Time</option>
-                                    <option>Temporary</option>
-                                </select>
-                            </div>
+                                <div class="col-sm-10">
+                                    <select class="form-control m-bot15" id="pass_type" required>
+                                        <option>Full Time</option>
+                                        <option>Temporary</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-2">Date Ranges</label>
+                                <label class="control-label col-sm-2">Start Date - End Date</label>
                                 <div class="col-sm-10">
                                 <div class="input-prepend">
-                                    <input id="reservation" type="text" class="form-control" />
+                                    <input id="reservation" type="text" class="form-control"  required/>
                                 </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-10">
                                     <label class="col-lg-2 control-label">Information</label>
+                                    <div>
                                     <p class="form-control-static">Full Time Passes are granted for four month periods.</p>
                                     <p class="form-control-static">Temporary passes are granted for the set dates.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-primary" onclick="submitPlate()">Add Plate</button>
                         </form>
                         </div>
+                    </section>
                     </div>
                 </div>
             <!-- page end-->
@@ -529,6 +516,24 @@
     <script src="js/form-component.js"></script>
     <!-- custome script for all page -->
     <script src="js/scripts.js"></script>
+
+    <!-- JS -->
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-firestore.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAdTQUpXXV6BiKJ7PmW-6doswCo9qxvNQ0",
+            authDomain: "parking-authorization-system.firebaseapp.com",
+            databaseURL: "https://parking-authorization-system.firebaseio.com",
+            projectId: "parking-authorization-system",
+            storageBucket: "parking-authorization-system.appspot.com",
+            messagingSenderId: "878965152449"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="license_plate.js"></script>
+    <script src="license_plate_query_check.js"></script>
 
 
     </body>
