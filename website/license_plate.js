@@ -62,7 +62,7 @@ function submitPlate(){
             message += 'Car Description\n';
         }
         if (date == "") {
-            message += 'Date License Plate is Valid From\n';
+            message += 'Date Issued\n';
         }
         alert(message);
         return;
@@ -105,8 +105,6 @@ function submitPlate(){
     document.forms["plate_form"].reset();
 }
 
-
-
 function search() {
     let searchTable = document.getElementById("searchCriteria").selectedIndex;
     let searchContent = document.getElementById("searchContent").value;
@@ -123,7 +121,8 @@ function search() {
                         content += '<td>' + owner +'</td>';
                         content += '<td>' + searchContent +'</td>';
                         content += '<td>' + data.data().vehicle_description +'</td>';
-                        content += '<td><div class="btn-group"><a class="btn btn-success" onclick="edit(this)" data-toggle="tooltip" title="Edit License Plate"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this)" data-toggle="tooltip" title="Delete License Plate"><i class="icon_close_alt2"></i></a></div></td>';
+                        content += '<td><div class="btn-group"><a class="btn btn-success" onclick="edit(this, 1)" data-toggle="tooltip" title="Edit User"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this, 1)" data-toggle="tooltip" title="Delete User"><i class="icon_close_alt2"></i></a></div></td>';
+                        content += '<td><div class="btn-group"><a class="btn btn-success" onclick="edit(this, 2)" data-toggle="tooltip" title="Edit License Plate"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this, 2)" data-toggle="tooltip" title="Delete License Plate"><i class="icon_close_alt2"></i></a></div></td>';
                         content += '</tr>';
                         $('#license_plates').append(content);
                     }
@@ -183,27 +182,38 @@ function search() {
 }
 
 function edit(row, user_or_plate) {
-    console.log("Row:" + row.closest('tr').rowIndex);
+    // console.log("Row:" + row.closest('tr').rowIndex);
     var myTable = document.getElementById("searchResults");
     var myCells = myTable.rows.item(row.closest('tr').rowIndex).cells;
     var cellLength = myCells.length;
-    for (var i = 0; i < cellLength-2; i++) {
-        var cellValue = myCells.item(i).innerHTML;
-        console.log(cellValue);
+
+    // 1 == license plate - going to use this index to get owner id if necessary
+    var plate_id = myCells.item(1).innerHTML;
+
+    
+    if (user_or_plate == 1) {
+        // User
+        // get user id and then redirect window
+        db.collection("license_plates").doc(plate_id).get().then(function (doc) {
+            window.location.href="license_plate_edit_user.html?" + doc.data().owner_id;
+        });
+    } else if (user_or_plate == 2) {
+        // License Plate
+        if (plate_id != "NO PLATES FOUND FOR THIS USER") {
+            // redirect window with plate id
+            window.location.href="license_plate_edit_plate.html?" + plate_id;
+        } else {
+            alert("There are no license plates to edit.");
+        }
     }
 }
 
 function del(row, user_or_plate) {
-    //console.log("Row:" + row.closest('tr').rowIndex);
     var myTable = document.getElementById("searchResults");
     var myCells = myTable.rows.item(row.closest('tr').rowIndex).cells;
     var cellLength = myCells.length;
-    /*for (var i = 0; i < cellLength-2; i++) {
-        var cellValue = myCells.item(i).innerHTML;
-        console.log(cellValue);
-    }*/
-    // 1 - license plate - going to use this index to get owner id if necessary
 
+    // 1 == license plate - going to use this index to get owner id if necessary
     var plate_id = myCells.item(1).innerHTML;
 
     if (user_or_plate == 1) {
@@ -264,7 +274,7 @@ function del(row, user_or_plate) {
             });
         });
     } else if (user_or_plate == 2) {
-        // Plate
+        // License Plate
         if (plate_id != "NO PLATES FOUND FOR THIS USER") {
             var confirmation = confirm("Are you sure you want to delete the license plate from the user?");
             if (confirmation) {
@@ -295,8 +305,7 @@ function del(row, user_or_plate) {
                                 console.error("Error removing document: ", error);
                                 return;
                             });
-                        })
-                        .catch(function(error) {
+                        }).catch(function(error) {
                             // The document probably doesn't exist.
                             console.error("Error updating document: ", error);
                             return;

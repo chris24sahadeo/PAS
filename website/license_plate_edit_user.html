@@ -9,7 +9,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Add User - PAS</title>
+    <title>Edit User - PAS</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -399,22 +399,23 @@
             <section class="wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>Add New Driver</h3>
+                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>Edit Driver</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
                         <li><i class="fa fa-file-text-o"></i><a href="license_plate_index.html">License Plates</a></li>
-                        <li><i class="fa fa-file-text-o"></i>Add New Driver</li>
+                        <li><i class="fa fa-file-text-o"></i><a href="license_plate_search.html">Search for Driver Information</a></li>
+                        <li><i class="fa fa-file-text-o"></i>Edit Driver</li>
                     </ol>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
                     <section class="panel">
-                        <header class="panel-heading">
-                        Add Driver Information
+                        <header id="userHeader" class="panel-heading">
+                        New Driver Information
                         </header>
                         <div class="panel-body">
-                        <form class="form-validate form-horizontal" method="GET" id="user_form">
+                        <form class="form-validate form-horizontal" method="get" id="edit_user_form">
                             <div class="form-group">
                             <label class="col-sm-2 control-label">First Name <span class="required">*</span></label>
                                 <div class="col-sm-10">
@@ -439,7 +440,7 @@
                                     <input type="number" class="form-control" id="pnumber" required/>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-primary" onclick="submitUser()">Next</button>
+                            <button type="button" class="btn btn-success" onclick="update()">Update</button>
                         </form>
                         </div>
                     </section>
@@ -512,6 +513,7 @@
         firebase.initializeApp(config);
     </script>
     <script src="license_plate.js"></script>
+    <script src="user_query_check_edit.js"></script>
 
 
     </body>
