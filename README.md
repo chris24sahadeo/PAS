@@ -3,9 +3,10 @@ readme tutorial: https://github.com/matiassingers/awesome-readme
 # !!!PUT LOGO HERE!!!
 
 # PAS
-A parking authorization System for private parking lots
+A parking authorization System for private parking lots  
 
 # !!!MAJOR LINKS!!!
+- [Project Website](https://sites.google.com/view/parking-authorization-system/home)
 - YouTube Videos
 	- Midcourse presentation
 	- Demos
