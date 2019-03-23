@@ -28,9 +28,15 @@ function showmessage(){
   //app_firebase = firebase;
 //})()
 
+var firebase = app_firebase;
+var db = firebase.firestore(); 
+
+var ADMIN_ROLE = 3;
 
 //control anonymous users
 var mainApp = {};
+
+var userEmail;
 
 (function (){
   var firebase = app_firebase;
@@ -40,14 +46,9 @@ var mainApp = {};
       // User is signed in.
       uid = user.uid;
       console.log("User id: ",uid);
-      admin.auth().getUserByEmail(email)
-  .then(function(userRecord) {
-    // See the UserRecord reference doc for the contents of userRecord.
-    console.log("Successfully fetched user data:", userRecord.toJSON());
-  })
-  .catch(function(error) {
-    console.log("Error fetching user data:", error);
-  });
+
+      userEmail = user.email;
+      console.log("Email log in: ", userEmail);
       //console.log("User record: ",user.toJSON());
     
     }else{
@@ -69,6 +70,45 @@ var mainApp = {};
   mainApp.logOut = logOut;
 
 })()
+
+//ADMIN = "jasonnonstop16@gmail.com";
+
+function authUser(){
+  //checkEmail(userEmail);
+  console.log("In authUser()");
+  console.log("User email: ",userEmail);
+
+  db.collection("staff").get().then(function(querySnapshot) {
+    var data = -1;
+    var isAdmin = -1;
+    querySnapshot.forEach(function(doc) {
+      
+        console.log(doc.id, " => ", doc.data());
+        //if email exists in staff collection
+        if(doc.data().email == userEmail){
+          console.log("Found email...");
+          data = 1;
+          //if user is admin
+          if(doc.data().role == ADMIN_ROLE){
+            console.log("Admin rights for: ", userEmail);
+            isAdmin = 1;
+            window.location.replace("add-parking-lot.html")
+
+          }
+        }
+
+    });
+        if(isAdmin == -1){
+          alert("You are not an ADMIN");
+          window.location.replace("index.html");
+        }
+          
+        if(data == -1)
+          console.log("Did not find email in DB...");
+});
+  
+}
+
 
 /*
 
