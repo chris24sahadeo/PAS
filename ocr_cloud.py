@@ -1,11 +1,13 @@
 # exceptions:
 # no internet access
-# keep looping until plate recognised OR opgect moved (need another object check here)
+# keep looping (taking pictures) until plate recognised and validated OR object moved (need another object check here)
+# use return codes in the openalpr rest api for exception handling
 
 import requests
 import base64
 import json
 import picamera
+import time
 
 
 class OCR_Cloud:
@@ -30,11 +32,26 @@ class OCR_Cloud:
         
         # calling openALPR
         print('Calling openALPR for licence plate recognition')
+        start = time.time()
         url = 'https://api.openalpr.com/v2/recognize_bytes?recognize_vehicle=0&country=th&secret_key=%s' % (self.SECRET_KEY)
         r = requests.post(url, data = img_base64)
         
         # return
-        print(json.dumps(r.json(), indent=2))
+        # print(json.dumps(r.json(), indent=2)) # dumps encodes json for storage or output...we dont need this
+        # data_dump = json.dumps(r.json(), indent=2)
+        print('OpenALPR responded in {} seconds'.format(time.time()-start))
+        
+        # exception handling goes here
+        data_dump = r.json()
+        results = data_dump['results'] # getting the first candidate
+        if results is not []:
+            plate = results[0]['plate'].lower()            
+        else:
+            plate = 'false'
+            
+        print('Plate Number: {}'.format(plate))        
+        return(plate)
+        
 
         
         
