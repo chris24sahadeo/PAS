@@ -22,11 +22,11 @@ class OCR_Cloud:
     def perform_ocr(self):
         # if no image provided then take a picture with the camera
         IMAGE_PATH = 'images/image.jpg'
-        print('Taking picture...')
-        # self.camera.capture(IMAGE_PATH)
+        print('Scanning licence plate')
+        self.camera.capture(IMAGE_PATH)
         
         # encoding the image as binary data
-        print('Converting picture to binary data...')
+        print('Converting image.jpg to binary data...')
         with open(IMAGE_PATH, 'rb') as image_file:
             img_base64 = base64.b64encode(image_file.read())
         
@@ -39,20 +39,20 @@ class OCR_Cloud:
         # return
         # print(json.dumps(r.json(), indent=2)) # dumps encodes json for storage or output...we dont need this
         # data_dump = json.dumps(r.json(), indent=2)
-        print('OpenALPR responded in {} seconds'.format(time.time()-start))
+        end = time.time()-start
+        print('OpenALPR responded in {} seconds'.format(end))
         
         # exception handling goes here
         data_dump = r.json()
         results = data_dump['results'] # getting the first candidate
-        if results is not []:
-            plate = results[0]['plate'].lower()            
+        # print(results)
+        if results:
+            plate = results[0]['plate'].lower()
+            print('Plate number: {}'.format(plate))
+            return plate
         else:
-            plate = 'false'
-            
-        print('Plate Number: {}'.format(plate))        
-        return(plate)
-        
-
+            print('OCR Failed')
+            return False
         
         
         

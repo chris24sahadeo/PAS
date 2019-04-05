@@ -3,7 +3,7 @@ import time
 
 class Remote:
     
-    PULSE_DURATION = 0.5
+    PULSE_DURATION = 2
     
     
     def __init__(self):
@@ -14,7 +14,7 @@ class Remote:
         GPIO.setup(self.OUT, GPIO.OUT)
         
     
-    def raise_barrier(self, barrier):
+    def raise_barrier(self, barrier='IN'):
         # barrier is a string: either IN or OUT
         if barrier == 'IN':
             PIN = self.IN

@@ -11,7 +11,7 @@ print('Setting pin 18 to high')
 GPIO.setup(PIN, GPIO.OUT)
 GPIO.output(PIN, GPIO.HIGH)
 
-for i in reversed(range(10)):
+for i in reversed(range(1)):
     print(i)
     time.sleep(1)
 
