@@ -31,7 +31,7 @@ function showmessage(){
 var firebase = app_firebase;
 var db = firebase.firestore(); 
 
-var ADMIN_ROLE = 3;
+
 
 //control anonymous users
 var mainApp = {};
@@ -73,7 +73,57 @@ var userEmail;
 
 //ADMIN = "jasonnonstop16@gmail.com";
 
-function authUser(){
+var add_PL = "add_parking_lot";
+var add_SO = "add_security_officer";
+
+var ADMIN_ROLE = 3;
+function authUser(clicked_id){
+  //checkEmail(userEmail);
+  //console.log("In authUser()");
+  //console.log("User email: ",userEmail);
+
+  console.log("Id btn: ",clicked_id);
+  db.collection("staff").get().then(function(querySnapshot) {
+    var data = -1;
+    var isAdmin = -1;
+    querySnapshot.forEach(function(doc) {
+      
+        console.log(doc.id, " => ", doc.data());
+        //if email exists in staff collection
+        if(doc.data().email == userEmail){
+          console.log("Found email...");
+          data = 1;
+          //if user is admin
+          if(doc.data().role == ADMIN_ROLE){
+            console.log("Admin rights for: ", userEmail);
+            isAdmin = 1;
+            if(clicked_id == add_PL){
+              //add parking lot page
+              window.location.replace("add-parking-lot.html")
+            }
+            else if(clicked_id == add_SO){
+              //add security officer
+              window.location.replace("add-security-officer.html")
+            }
+
+          }
+        }
+
+    });
+        if(isAdmin == -1){
+          alert("You are not an ADMIN");
+          //window.location.replace("index.html");
+        }
+          
+        if(data == -1)
+          console.log("Did not find email in DB...");
+});
+  
+}
+
+/*
+//add/remove security officer
+function authUser2(){
   //checkEmail(userEmail);
   console.log("In authUser()");
   console.log("User email: ",userEmail);
@@ -92,7 +142,7 @@ function authUser(){
           if(doc.data().role == ADMIN_ROLE){
             console.log("Admin rights for: ", userEmail);
             isAdmin = 1;
-            window.location.replace("add-parking-lot.html")
+            window.location.replace("add-security-officer.html")
 
           }
         }
@@ -108,7 +158,7 @@ function authUser(){
 });
   
 }
-
+*/
 
 /*
 
