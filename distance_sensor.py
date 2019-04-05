@@ -5,14 +5,18 @@ import time
 
 class Distance_Sensor:
     
+    TRIG = None
+    ECHO = None
     SPEED_OF_SOUND_INVERSE = 0.000058 # divide a time by this to get distance in cm
     SLEEP = 0.00001 # a small sleep for a pulse
     MIN_OBJECT_DETECTION_DISTANCE = 100 # in cm
     
-    def __init__(self, TRIG=4, ECHO=18):
+    def __init__(self, TRIG=25, ECHO=8):
         GPIO.setmode(GPIO.BCM)
         # TRIG = 4 # pin for trigger output
-        # ECHO = 18 # pin for echo input        
+        # ECHO = 18 # pin for echo input
+        self.TRIG = TRIG
+        self.ECHO = ECHO
         GPIO.setup(TRIG, GPIO.OUT)
         GPIO.setup(ECHO, GPIO.IN)
         print('Distance Sensor init successful')
@@ -20,24 +24,24 @@ class Distance_Sensor:
     
     def get_distance(self):
         # issue signal out
-        GPIO.output(TRIG, TRUE)
-        time.sleep(SLEEP)
-        GPIO.output(TRIG, FALSE)
+        GPIO.output(self.TRIG, True)
+        time.sleep(self.SLEEP)
+        GPIO.output(self.TRIG, False)
         
         # get time of echo send
-        print('Sending echo...')
-        while GPIO.input(ECHO) == False:
+        # print('Sending echo...')
+        while GPIO.input(self.ECHO) == False:
             start = time.time()
         
         # get time of echo return
-        print('Waiting for echo response...')
-        while GPIO.input(ECHO) == True:
+        # print('Waiting for echo response...')
+        while GPIO.input(self.ECHO) == True:
             end = time.time()
-        print('Echo received')
+        # print('Echo received')
         
         # calculate and return distance
         distance = (end-start)/self.SPEED_OF_SOUND_INVERSE
-        print('Obejct at distance: {}'.format(distance))
+        # print('Object at distance: {}cm'.format(distance))
         return distance
     
     
