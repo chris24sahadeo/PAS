@@ -116,6 +116,23 @@ function search() {
     }
 }
 
+//edit security officer info
+function edit(row) {
+    // console.log("Row:" + row.closest('tr').rowIndex);
+    var myTable = document.getElementById("searchResults");
+    var myCells = myTable.rows.item(row.closest('tr').rowIndex).cells;
+    var cellLength = myCells.length;
+
+    // 1 == license plate - going to use this index to get owner id if necessary
+    var security_officer_id = myCells.item(2).innerHTML;
+    console.log("Officer id: ", security_officer_id);
+
+    db.collection("staff").doc(security_officer_id).get().then(function (doc) {
+        window.location.href="edit-security-officer.html?" + doc.id;
+    });
+    
+}
+
 //delete 
 function del(row) {
     console.log("In delete...");
