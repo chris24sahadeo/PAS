@@ -9,7 +9,7 @@ var db = firebase.firestore();
     if (queryString != "" && queries[0].match(letterNumber)) {
         db.collection("users").doc(queries[0]).get().then(function(data) {
             if (data.exists) {
-                document.getElementById("plateHeader").innerHTML = "Add Plate Info for " 
+                document.getElementById("plateHeader").innerHTML = "Add Plate Information for " 
                                         + data.data().first_name + " " + data.data().last_name;
             } else {
                 alert("User not found. Weird. This shouldn't happen.\n\nTry searching for a user instead. You will now be redirected to the search page.")
@@ -17,7 +17,7 @@ var db = firebase.firestore();
             }
         });
     } else {
-        alert("User was not specified. This form is specifically for new users.\n\nTry searching for a user instead. You will now be redirected to the search page.");
+        alert("User was not specified.\n\nTry searching for a user instead. You will now be redirected to the search page.");
         window.location.href="license_plate_search.html";
     }
 
