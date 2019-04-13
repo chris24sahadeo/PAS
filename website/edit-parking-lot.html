@@ -9,7 +9,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Add/Edit/Remove License Plate - PAS</title>
+    <title>Edit Parking Lot - PAS</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -313,96 +313,127 @@
         </header>
         <!--header end-->
 
-                <!--sidebar start-->
-                <aside>
-                        <div id="sidebar" class="nav-collapse ">
-                          <!-- sidebar menu start-->
-                          <ul class="sidebar-menu">
-                            <li class="active">
-                              <a class="" href="index.html">
-                                            <i class="icon_house_alt"></i>
-                                            <span>Dashboard</span>
-                                        </a>
-                            </li>
-                            <li class="sub-menu">
-                              <a href="javascript:;" class="">
-                                            <i class="icon_document_alt"></i>
-                                            <span>Forms</span>
-                                            <span class="menu-arrow arrow_carrot-right"></span>
-                                        </a>
-                              <ul class="sub">
-                                <!--<li><a class="" href="add-parking-lot.html">Add Parking Lot</a></li>-->
-                                <li><a id="add_parking_lot" onclick="authUser(this.id)">Add Parking Lot</a></li>
-                                <li><a id="add_security_officer" onclick="authUser(this.id)">Add Security Officer</a></li>
-                              </ul>
-                            </li>
-                            <li class="sub-menu">
-                              <a href="javascript:;" class="">
-                                            <i class="icon_desktop"></i>
-                                            <span>Parking Lots</span>
-                                            <span class="menu-arrow arrow_carrot-right"></span>
-                                        </a>
-                              <ul class="sub">
-                                <li><a class="" href="search-parking-lot.html">Search/Remove/Edit</a></li>
-                                <li><a class="" href="display-parking-lots.html">View Parking Lots</a></li>
-                                <!--<li><a class="" href="grids.html">Grids</a></li>-->
-                              </ul>
-                            </li>
-                  
-                            <li class="sub-menu">
-                              <a href="javascript:;" class="">
-                                            <i class="icon_table"></i>
-                                            <span>Security Officers</span>
-                                            <span class="menu-arrow arrow_carrot-right"></span>
-                                        </a>
-                              <ul class="sub">
-                                <li><a class="" href="search-security-officer.html">Search/Remove/Edit</a></li>
-                                <li><a class="" href="display-security-officers.html">View Security Officers</a></li>
-                              </ul>
-                            </li>
-                  
-                            <li class="sub-menu">
-                              <a href="javascript:;" class="">
-                                            <i class="icon_documents_alt"></i>
-                                            <span>Pages</span>
-                                            <span class="menu-arrow arrow_carrot-right"></span>
-                                        </a>
-                              <ul class="sub">
-                                <li><a class="" href="profile.html">Profile</a></li>
-                                <li><a class="" href="login.html"><span>Login Page</span></a></li>
-                                <li><a class="" href="contact.html"><span>Contact Page</span></a></li>
-                                <li><a class="" href="blank.html">Blank Page</a></li>
-                                <li><a class="" href="404.html">404 Error</a></li>
-                              </ul>
-                            </li>
-                  
-                          </ul>
-                          <!-- sidebar menu end-->
-                        </div>
-                      </aside>
-                    <!--sidebar end-->
+            <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse ">
+          <!-- sidebar menu start-->
+          <ul class="sidebar-menu">
+            <li class="active">
+              <a class="" href="index.html">
+                            <i class="icon_house_alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+            </li>
+            <li class="sub-menu">
+              <a href="javascript:;" class="">
+                            <i class="icon_document_alt"></i>
+                            <span>Forms</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+              <ul class="sub">
+                <!--<li><a class="" href="add-parking-lot.html">Add Parking Lot</a></li>-->
+                <li><a id="add_parking_lot" onclick="authUser(this.id)">Add Parking Lot</a></li>
+                <li><a id="add_security_officer" onclick="authUser(this.id)">Add Security Officer</a></li>
+              </ul>
+            </li>
+            <li class="sub-menu">
+              <a href="javascript:;" class="">
+                            <i class="icon_desktop"></i>
+                            <span>Parking Lots</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+              <ul class="sub">
+                <li><a class="" href="search-parking-lot.html">Search/Remove/Edit</a></li>
+                <li><a class="" href="display-parking-lots.html">View Parking Lots</a></li>
+                <!--<li><a class="" href="grids.html">Grids</a></li>-->
+              </ul>
+            </li>
+  
+            <li class="sub-menu">
+              <a href="javascript:;" class="">
+                            <i class="icon_table"></i>
+                            <span>Security Officers</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+              <ul class="sub">
+                <li><a class="" href="search-security-officer.html">Search/Remove/Edit</a></li>
+                <li><a class="" href="display-security-officers.html">View Security Officers</a></li>
+              </ul>
+            </li>
+  
+            <li class="sub-menu">
+              <a href="javascript:;" class="">
+                            <i class="icon_documents_alt"></i>
+                            <span>Pages</span>
+                            <span class="menu-arrow arrow_carrot-right"></span>
+                        </a>
+              <ul class="sub">
+                <li><a class="" href="profile.html">Profile</a></li>
+                <li><a class="" href="login.html"><span>Login Page</span></a></li>
+                <li><a class="" href="contact.html"><span>Contact Page</span></a></li>
+                <li><a class="" href="blank.html">Blank Page</a></li>
+                <li><a class="" href="404.html">404 Error</a></li>
+              </ul>
+            </li>
+  
+          </ul>
+          <!-- sidebar menu end-->
+        </div>
+      </aside>
+      <!--sidebar end-->
 
         <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>License Plate Addition/ Editing/ Removal</h3>
+                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>Edit Parking Lot info</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-                        <li><i class="fa fa-file-text-o"></i>License Plates</li>
+                        <li><i class="fa fa-file-text-o"></i><a href="display-parking-lots.html">Parking Lots</a></li>
+                        <li><i class="fa fa-file-text-o"></i><a href="search-parking-lot.html">Search for Parking Lot</a></li>
+                        <li><i class="fa fa-file-text-o"></i>Edit Parking Lot</li>
                     </ol>
                     </div>
                 </div>
-                <section class="panel">
-                    <header class="panel-heading">
-                        What would you like to do?
-                    </header>
-                    <div class="panel-body">
-                        <a href="license_plate_add_user.html" class="btn btn-primary btn-lg btn-block">Add New Driver</a>
-                        <a href="license_plate_search.html" class="btn btn-warning btn-lg btn-block">Edit/Remove Existing Driver</a>
+                <div class="row">
+                    <div class="col-lg-12">
+                    <section class="panel">
+                        <header id="userHeader" class="panel-heading">
+                        New Parking Lot Information
+                        </header>
+                        <div class="panel-body">
+                        <form class="form-validate form-horizontal" method="get" id="edit_user_form">
+                            <div class="form-group ">
+                                <label for="name" class="control-label col-lg-2">Name <span class="required">*</span></label>
+                                <div class="col-lg-10">
+                                  <input class="form-control" id="name" name="fullname" minlength="1" type="text" readonly />
+                                </div>
+                              </div>
+                              <div class="form-group ">
+                                <label for="loc" class="control-label col-lg-2">Location <span class="required">*</span></label>
+                                <div class="col-lg-10">
+                                  <input class="form-control " id="loc" type="text" name="location" readonly />
+                                </div>
+                              </div>
+                              <div class="form-group ">
+                                <label for="cmaxoccup" class="control-label col-lg-2">Max Occupancy</label>
+                                <div class="col-lg-10">
+                                  <input class="form-control " id="cmaxoccup" type="number" min="0" name="occupancy" />
+                                </div>
+                              </div>
+                              <div class="form-group ">
+                                <label for="officer_id" class="control-label col-lg-2">Security Officer ID <span class="required">*</span></label>
+                                <div class="col-lg-10">
+                                  <input class="form-control" id="officer_id" name="security_officer" minlength="2" type="text"/>
+                                </div>
+                              </div>
+                            <button type="button" class="btn btn-success" onclick="update()">Update</button>
+                        </form>
+                        </div>
+                    </section>
                     </div>
-                </section>
+                </div>
             <!-- page end-->
             </section>
         </section>
@@ -453,6 +484,17 @@
     <script src="js/form-component.js"></script>
     <!-- custome script for all page -->
     <script src="js/scripts.js"></script>
+
+    
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+    <script src="firebase.js"></script>
+    
+    <!-- JS -->
+    <script src="validate.js"></script>
+    <script src="index.js"></script>
+    <script src="search-parking-lot.js"></script>
+    <script src="edit-parking-lot.js"></script> 
 
 
     </body>
