@@ -26,7 +26,7 @@ var ADMIN_ROLE = 3;
       });
           if(isAdmin == -1){
             //alert("You are not an ADMIN");
-            window.location.replace("index.html");
+            window.location.replace("home.html");
           }
             
           if(data == -1)
