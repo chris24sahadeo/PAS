@@ -9,13 +9,12 @@ var db = firebase.firestore();
     if (queryString != "" && queries[0].match(letterNumber)) {
         db.collection("license_plates").doc(queries[0]).get().then(function(data) {
             if (data.exists) {
-                var name = data.id;
-                console.log(data.id);
-                var splitName = name.split(" ");
-                console.log(splitName);
-                splitName[0] = splitName[0].charAt(0).toUpperCase() + splitName[0].split(1);
-                splitName[1] = splitName[1].charAt(0).toUpperCase() + splitName[1].split(1);
-                document.getElementById("plateHeader").innerHTML = "New Plate Information for " + splitName[0] + " " + splitName[1];
+                db.collection("users").doc(data.data().owner_id).get().then(function (data2) {
+                    if (data2.exists) {
+                        let name = data2.data().first_name.charAt(0).toUpperCase() + data2.data().first_name.slice(1) + " " + data2.data().last_name.charAt(0).toUpperCase() + data2.data().last_name.slice(1);
+                        document.getElementById("plateHeader").innerHTML = "New Plate Information for " + name;
+                    }
+                });
             } else {
                 alert("Plate not found. Weird. This shouldn't happen.\n\nTry searching for a plate instead. You will now be redirected to the search page.")
                 window.location.href="license_plate_search.html";
