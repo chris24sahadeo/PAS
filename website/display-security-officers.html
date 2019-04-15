@@ -9,7 +9,7 @@
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <!-- link rel="shortcut icon" href="img/favicon.png"-->
 
-    <title>Search Security Officer</title>
+    <title>Security Officers</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -388,14 +388,14 @@
             <section class="wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>Edit/Remove Security Officer Information</h3>
+                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>Security Officers</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="home.html">Home</a></li>
-                        <li><i class="fa fa-file-text-o"></i><a href="display-security-officers.html">Security Officers</a></li>
-                        <li><i class="fa fa-file-text-o"></i>Search for Security Officer Information</li>
+                        <li><i class="fa fa-file-text-o"></i>List of Security Officers</li>
                     </ol>
                     </div>
                 </div>
+                <!--
                 <div class="row">
                     <div class="col-lg-12">
                     <section class="panel">
@@ -403,51 +403,45 @@
                         Search Below
                         </header>
                         <div class="panel-body">
-                        <form class="form-horizontal " method="get">
                             <div class="form-group">
                                 <div class="col-sm-10">
-                                    Search Security Officer by:
-                                    <select id="searchCriteria" class="form-control m-bot15">
-                                        <option>Officer ID</option>
-                                        <option>Officer First Name</option>
-                                        <option>Officer Last Name</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="searchContent">
+                                    Enter name:
+                                    <input type="text"  class="form-control" id="searchContent">
                                 </div>
                             </div>
                             <button type="button" onclick="search()" class="btn btn-primary">Search</button>
                         </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                        Search Results
+                        
                         </header>
                         <div class="panel-body">
                         <form class="form-horizontal " method="get">
                             <div class="form-group">
                                 <div class="col-sm-10">
-                                    <table class="table table-striped table-advance table-hover" id="searchResults">
+                                    <table id="security_officers_table" class="table bootstrap-datatable countries">
                                         <thead>
-                                        <tr>
+                                          <tr>
                                             <th>First Name</th>
                                             <th>Last Name</th>
-                                            <th>ID</th>
                                             <th>Email</th>
+                                            <th>Security Officer ID</th>
                                             <th>Phone Number</th>
-                                            <th>Action</th>
-                                        </tr>
+                                          </tr>
                                         </thead>
-                                        <tbody id="security_officers">
+                                        <tbody>
+                                            <td id="btn">
+                      
+                                            </td>
+                                            <!--<a class="btn btn-success" data-toggle="modal" href="#myModal">Update</a>
+                                            <a class="btn btn-danger" data-toggle="modal" href="#myModal2">Delete</a> -->
                                         </tbody>
-                                    </table>
+                                      </table>
                                 </div>
                             </div>
                         </form>
@@ -458,7 +452,6 @@
             </section>
         </section>
         <!--main content end-->
-
         <div class="text-right">
         <div class="credits">
             <!--
@@ -512,7 +505,7 @@
     <script src="firebase.js"></script>
 
     <script src="index.js"></script>
-    <script src="search-security-officer.js"></script>
+    <script src="display-security-officers.js"></script>
 
     </body>
 

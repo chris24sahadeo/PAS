@@ -7,43 +7,70 @@
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+  <!-- <link rel="shortcut icon" href="img/favicon.png"> -->
+
+  <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
+
+  <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+
+  
+
+  <title>HOME - PAS</title>
 
 
-  <title>Form Validation | Creative - Bootstrap 3 Responsive Admin Template</title>
-
-  <script src="index.js"></script>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   <!-- bootstrap theme -->
   <link href="css/bootstrap-theme.css" rel="stylesheet">
   <!--external css-->
   <!-- font icon -->
   <link href="css/elegant-icons-style.css" rel="stylesheet" />
   <link href="css/font-awesome.min.css" rel="stylesheet" />
+  <!-- full calendar css-->
+  <link href="assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+  <link href="assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+  <!-- easy pie chart-->
+  <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+  <!-- owl carousel -->
+  <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+  <link href="css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
   <!-- Custom styles -->
+  <link rel="stylesheet" href="css/fullcalendar.css">
+  <link href="css/widgets.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet" />
+  <link href="css/xcharts.min.css" rel=" stylesheet">
+  <link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
 
-  <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
-  <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
-      <script src="js/respond.min.js"></script>
-      <script src="js/lte-ie7.js"></script>
-    <![endif]-->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!-- =======================================================
-      Theme Name: NiceAdmin
-      Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-      Author: BootstrapMade
-      Author URL: https://bootstrapmade.com
-    ======================================================= -->
+  <!-- =======================================================
+    Theme Name: NiceAdmin
+    Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+    Author: BootstrapMade
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
 </head>
 
 <body>
+  
+  <script src="firebase.js"></script>
+
+  <script src="validate-home.js"></script>
+  <script src="index.js"></script>
+  <div id="firebaseui-auth-container"></div>
+  <!--<button onclick="mainApp.logOut()">logOut</button> --> 
+
   <!-- container section start -->
   <section id="container" class="">
-    <!--header start-->
+
+
     <header class="header dark-bg">
       <div class="toggle-nav">
         <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
@@ -73,12 +100,12 @@
           <li id="task_notificatoin_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <i class="icon-task-l"></i>
-                            <span class="badge bg-important">5</span>
+                            <span class="badge bg-important">6</span>
                         </a>
             <ul class="dropdown-menu extended tasks-bar">
               <div class="notify-arrow notify-arrow-blue"></div>
               <li>
-                <p class="blue">You have 5 pending tasks</p>
+                <p class="blue">You have 6 pending letter</p>
               </li>
               <li>
                 <a href="#">
@@ -289,7 +316,8 @@
                 <a href="#"><i class="icon_chat_alt"></i> Chats</a>
               </li>
               <li>
-                <a href="index.html"><i class="icon_key_alt"></i> Log Out</a>
+                <!--<button onclick="mainApp.logOut()">Logout</button> -->
+                <a href="index.html" onclick="mainApp.logOut()"><i class="icon_key_alt"></i> Log Out</a> 
               </li>
               <li>
                 <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
@@ -375,71 +403,151 @@
     </aside>
     <!--sidebar end-->
 
+
+
     <!--main content start-->
+
     <section id="main-content">
       <section class="wrapper">
+        <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-files-o"></i> ADD PARKING LOT</h3>
+            <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="home.html">Home</a></li>
-              <li><i class="icon_document_alt"></i>Forms</li>
-              <li><i class="fa fa-files-o"></i>ADD PARKING LOT</li>
+              <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+              <li><i class="fa fa-laptop"></i>Dashboard</li>
             </ol>
           </div>
         </div>
-        <!-- Form validations -->
+
         <div class="row">
-          <div class="col-lg-12">
-            <section class="panel">
-              <header class="panel-heading">
-                Add Parking Lot
-              </header>
-              <div class="panel-body">
-                <div class="form">
-                  <form class="form-validate form-horizontal" id="feedback_form" method="get" action="">
-                    <div class="form-group ">
-                      <label for="cname" class="control-label col-lg-2">Name <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input class="form-control" id="cname" name="fullname" minlength="1" type="text" required />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="cemail" class="control-label col-lg-2">Location <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input class="form-control " id="cemail" type="text" name="location" required />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="curl" class="control-label col-lg-2">Max Occupancy</label>
-                      <div class="col-lg-10">
-                        <input class="form-control " id="curl" type="number" min="0" name="occupancy" required />
-                      </div>
-                    </div>
-                    <div class="form-group ">
-                      <label for="cname" class="control-label col-lg-2">Security Officer ID <span class="required">*</span></label>
-                      <div class="col-lg-10">
-                        <input class="form-control" id="subject" name="security_officer" minlength="2" type="text" required />
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="col-lg-offset-2 col-lg-10">
-                        <button id="submit_btn_parkingLot" onclick="submitParkingLot()" class="btn btn-primary" type="submit">Save</button>
-                        <button id="clearBtn" onlick = "display()" class="btn btn-primary" type="submit">Display Parking Lots</button>
-                      </div>
-                    </div>
-                  </form>
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                  <img class="card-img-top" src="licenseplate.png" alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">WANT TO ENTER?</p>
+                    <a href="license_plate_add_plate.html" class="btn btn-primary">Add License Plate</a>
+                  </div>
                 </div>
-
-              </div>
-            </section>
+          
           </div>
-        </div>
+          <!--/.col-->
 
-    </section>
-    <!--main content end-->
-    <div class="text-right">
-      <div class="credits">
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="info-box brown-bg">
+              <i class="fa fa-shopping-cart"></i>
+              <div class="count">7.538</div>
+              <div class="title">Purchased</div>
+            </div>
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="info-box dark-bg">
+              <i class="fa fa-thumbs-o-up"></i>
+              <div class="count">4.362</div>
+              <div class="title">Order</div>
+            </div>
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="info-box green-bg">
+              <i class="fa fa-cubes"></i>
+              <div class="count">1.426</div>
+              <div class="title">Stock</div>
+            </div>
+            <!--/.info-box-->
+          </div>
+          <!--/.col-->
+
+        </div>
+        <!--/.row-->
+
+        <!-- statics end -->
+
+          <div class="col-md-6 portlets">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="pull-left">Quick Post</div>
+                <div class="widget-icons pull-right">
+                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+              <div class="panel-body">
+                <div class="padd">
+
+                  <div class="form quick-post">
+                    <!-- Edit profile form (not working)-->
+                    <form class="form-horizontal">
+                      <!-- Title -->
+                      <div class="form-group">
+                        <label class="control-label col-lg-2" for="title">Title</label>
+                        <div class="col-lg-10">
+                          <input type="text" class="form-control" id="title">
+                        </div>
+                      </div>
+                      <!-- Content -->
+                      <div class="form-group">
+                        <label class="control-label col-lg-2" for="content">Content</label>
+                        <div class="col-lg-10">
+                          <textarea class="form-control" id="content"></textarea>
+                        </div>
+                      </div>
+                      <!-- Cateogry -->
+                      <div class="form-group">
+                        <label class="control-label col-lg-2">Category</label>
+                        <div class="col-lg-10">
+                          <select class="form-control">
+                                                  <option value="">- Choose Cateogry -</option>
+                                                  <option value="1">General</option>
+                                                  <option value="2">News</option>
+                                                  <option value="3">Media</option>
+                                                  <option value="4">Funny</option>
+                                                </select>
+                        </div>
+                      </div>
+                      <!-- Tags -->
+                      <div class="form-group">
+                        <label class="control-label col-lg-2" for="tags">Tags</label>
+                        <div class="col-lg-10">
+                          <input type="text" class="form-control" id="tags">
+                        </div>
+                      </div>
+
+                      <!-- Buttons -->
+                      <div class="form-group">
+                        <!-- Buttons -->
+                        <div class="col-lg-offset-2 col-lg-9">
+                          <button type="submit" class="btn btn-primary">Publish</button>
+                          <button type="submit" class="btn btn-danger">Save Draft</button>
+                          <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+
+                </div>
+                <div class="widget-foot">
+                  <!-- Footer goes here -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <!-- project team & activity end -->
+
+      </section> 
+      <div class="text-right">
+        <div class="credits">
           <!--
             All the links in the footer should remain intact.
             You can delete the links only if you purchased the pro version.
@@ -448,35 +556,98 @@
           -->
           Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
-    </div>
+      </div>
+    </section>
+    <!--main content end-->
   </section>
-  <!-- container section end -->
-
-  <!--Firebase-->
-  <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
-  <script src="firebase.js"></script>
+  <!-- container section start -->
 
   <!-- javascripts -->
   <script src="js/jquery.js"></script>
+  <script src="js/jquery-ui-1.10.4.min.js"></script>
+  <script src="js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+  <!-- bootstrap -->
   <script src="js/bootstrap.min.js"></script>
   <!-- nice scroll -->
   <script src="js/jquery.scrollTo.min.js"></script>
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-  <!-- jquery validate js -->
-  <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+  <!-- charts scripts -->
+  <script src="assets/jquery-knob/js/jquery.knob.js"></script>
+  <script src="js/jquery.sparkline.js" type="text/javascript"></script>
+  <script src="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+  <script src="js/owl.carousel.js"></script>
+  <!-- jQuery full calendar -->
+  <<script src="js/fullcalendar.min.js"></script>
+    <!-- Full Google Calendar - Calendar -->
+    <script src="assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+    <!--script for this page only-->
+    <script src="js/calendar-custom.js"></script>
+    <script src="js/jquery.rateit.min.js"></script>
+    <!-- custom select -->
+    <script src="js/jquery.customSelect.min.js"></script>
+    <script src="assets/chart-master/Chart.js"></script>
 
+    <!--custome script for all page-->
+    <script src="js/scripts.js"></script>
+    <!-- custom script for this page-->
+    <script src="js/sparkline-chart.js"></script>
+    <script src="js/easy-pie-chart.js"></script>
+    <script src="js/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="js/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="js/xcharts.min.js"></script>
+    <script src="js/jquery.autosize.min.js"></script>
+    <script src="js/jquery.placeholder.min.js"></script>
+    <script src="js/gdp-data.js"></script>
+    <script src="js/morris.min.js"></script>
+    <script src="js/sparklines.js"></script>
+    <script src="js/charts.js"></script>
+    <script src="js/jquery.slimscroll.min.js"></script>
+    <script>
+      //knob
+      $(function() {
+        $(".knob").knob({
+          'draw': function() {
+            $(this.i).val(this.cv + '%')
+          }
+        })
+      });
 
-  
-  <!-- custom form validation script for this page-->
-  
-  <!--<script src="js/form-validation-script.js"></script>-->
-  <script src="validate.js"></script>
-  <script src="index.js"></script>
-  <script src="parking-lot-form.js"></script>
-  
-  <!--custome script for all page-->
-  <script src="js/scripts.js"></script>
+      //carousel
+      $(document).ready(function() {
+        $("#owl-slider").owlCarousel({
+          navigation: true,
+          slideSpeed: 300,
+          paginationSpeed: 400,
+          singleItem: true
 
+        });
+      });
+
+      //custom select box
+
+      $(function() {
+        $('select.styled').customSelect();
+      });
+
+      /* ---------- Map ---------- */
+      $(function() {
+        $('#map').vectorMap({
+          map: 'world_mill_en',
+          series: {
+            regions: [{
+              values: gdpData,
+              scale: ['#000', '#000'],
+              normalizeFunction: 'polynomial'
+            }]
+          },
+          backgroundColor: '#eef3f7',
+          onLabelShow: function(e, el, code) {
+            el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+          }
+        });
+      });
+    </script>
 
 </body>
 
