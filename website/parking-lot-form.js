@@ -4,14 +4,18 @@
 var firebase = app_firebase;
 var db = firebase.firestore();    
 
+var emaill = userEmail;
+console.log("Email address in form: ",emaill);
+
 //console.log("hello");
 
-function cancelForm(){
+function showData(){
   //display parking lots collection
   db.collection("parking_lots").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
+
     });
 });
 
@@ -36,7 +40,7 @@ db.collection("cities").doc("LA").set({
 var Script = function () {
 
     $.validator.setDefaults({
-        submitHandler: function() { alert("submitted!"); }
+        submitHandler: function() { console.log("Processing..."); }
     });
 
     $().ready(function() {
@@ -111,18 +115,100 @@ function submitParkingLot(){
     var psecurity_officer_id = document.forms["feedback_form"]["security_officer"].value;
     var pcurrent_occupancy = 0;
 
-    db.collection("parking_lots").doc(pname).set({
-        //name: pname,
-        location: plocation,
-        max_occupancy: pmax_occupancy,
-        security_officer_id: psecurity_officer_id,
-        current_occupancy: pcurrent_occupancy
-    })
-    .then(function() {
-        console.log("Document successfully written!");
-    })
-    .catch(function(error) {
-        console.error("Error writing document: ", error);
-    });
+    var plotname = pname.toLowerCase();
+    plocation = plocation.toLowerCase();
+    psecurity_officer_id = psecurity_officer_id.toLowerCase();
+    pmax_occupancy = parseInt(pmax_occupancy);
+
+    var FLAG = -1;
+
+    if(plotname != ""){
+        db.collection("parking_lots").get().then(function(querySnapshot) {
+            console.log(querySnapshot);
+            querySnapshot.forEach(function(doc) {
+            if (doc.id == plotname){
+                //parking lot id exists
+                console.log("Doc id: ", doc.id);
+                console.log("Parking lot id: ", plotname);
+                FLAG = 1;
+                alert("Parking lot exists..\nRe-enter parking lot name");
+                return;
+            }
+
+            });
+            //parking lot id does not exist; can ADD
+            if (FLAG == -1){
+                
+                //check to ensure security officer exists
+                if(psecurity_officer_id != ""){
+                        db.collection("staff").get().then(function(querySnapshot) {
+                            console.log(querySnapshot);
+                            querySnapshot.forEach(function(doc) {
+                            if (doc.id == psecurity_officer_id){
+                                //security officer id exists
+                                console.log("Doc id: ", doc.id);
+                                console.log("Officer id: ", psecurity_officer_id);
+                                FLAG = 1;
+
+                                //add
+                                db.collection("parking_lots").doc(plotname).set({
+                                    //name: pname,
+                                    location: plocation,
+                                    max_occupancy: pmax_occupancy,
+                                    security_officer_id: psecurity_officer_id,
+                                    current_occupancy: pcurrent_occupancy
+                                })
+                                .then(function() {
+                                    console.log("Document successfully written!");
+                                    alert("Successfully added parking lot");
+                                    window.location.replace("add-parking-lot.html");
+                                })
+                                .catch(function(error) {
+                                    console.error("Error writing document: ", error);
+                                });
+                            }
+
+                            });
+
+                            if (FLAG == -1){
+                                //id does not exists
+                                alert("Security officer does not exists..\nRe-enter security officer ID");
+                                return;
+                            }
+                        });
+                        //security officer id is
+                    }
+
+            }
+        });
+        //security officer id is
+    }
+
 }
 
+function display(){
+    window.location.replace("display-parking-lots.html");
+}
+
+
+
+            /*
+            if (FLAG == -1){
+                console.log("FLAG = -1")
+                //parking lot does not exists
+                //add to db
+                db.collection("parking_lots").doc(plotname).set({
+                    //name: pname,
+                    location: plocation,
+                    max_occupancy: pmax_occupancy,
+                    security_officer_id: psecurity_officer_id,
+                    current_occupancy: pcurrent_occupancy
+                })
+                .then(function() {
+                    console.log("Document successfully written!");
+                    window.location.replace("add-parking-lot.html");
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                });
+            }*/
