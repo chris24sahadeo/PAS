@@ -10,7 +10,8 @@ var db = firebase.firestore();
         db.collection("users").doc(queries[0]).get().then(function(data) {
             if (data.exists) {
                 document.getElementById("plateHeader").innerHTML = "Add Plate Information for " 
-                                        + data.data().first_name + " " + data.data().last_name;
+                                        + data.data().first_name.charAt(0).toUpperCase() + data.data().first_name.slice(1) + " " 
+                                        + data.data().last_name.charAt(0).toUpperCase() + data.data().last_name.slice(1);
             } else {
                 alert("User not found. Weird. This shouldn't happen.\n\nTry searching for a user instead. You will now be redirected to the search page.")
                 window.location.href="license_plate_search.html";

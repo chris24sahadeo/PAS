@@ -10,7 +10,8 @@ var db = firebase.firestore();
         db.collection("users").doc(queries[0]).get().then(function(data) {
             if (data.exists) {
                 document.getElementById("userHeader").innerHTML = "New Driver Information for " 
-                                        + data.data().first_name + " " + data.data().last_name;
+                                        + data.data().first_name.charAt(0).toUpperCase() + data.data().first_name.slice(1) + " " 
+                                        + data.data().last_name.charAt(0).toUpperCase() + data.data().last_name.slice(1);
             } else {
                 alert("User not found. Weird. This shouldn't happen.\n\nTry searching for a user instead. You will now be redirected to the search page.")
                 window.location.href="license_plate_search.html";
@@ -36,9 +37,9 @@ function update() {
     queryString = queryString.substring(1);
     var queries = queryString.split("&");
 
-    var fname = document.getElementById("fname").value;
-    var lname = document.getElementById("lname").value;
-    var email = document.getElementById("email").value;
+    var fname = document.getElementById("fname").value.toLowerCase();
+    var lname = document.getElementById("lname").value.toLowerCase();
+    var email = document.getElementById("email").value.toLowerCase();
     var pnumber = document.getElementById("pnumber").value;
 
     if (fname == "" || lname == "" || email == "" || pnumber == "") {

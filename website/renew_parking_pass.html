@@ -7,9 +7,9 @@
     <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
     <meta name="author" content="GeeksLabs">
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <!-- link rel="shortcut icon" href="img/favicon.png"-->
 
-    <title>Add License Plate - PAS</title>
+    <title>Search for License Plate - PAS</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -43,6 +43,7 @@
     Author: BootstrapMade
     Author URL: https://bootstrapmade.com
     ======================================================= -->
+
     </head>
 
     <body>
@@ -407,68 +408,67 @@
             <section class="wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>Add New Plates</h3>
+                    <h3 class="page-header"><i class="fa fa-file-text-o"></i>Renew Driver Parking Pass</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-                        <li><i class="fa fa-file-text-o"></i><a href="license_plate_index.html">License Plates</a></li>
-                        <li><i class="fa fa-file-text-o"></i>Add New Driver</li>
-                        <li><i class="fa fa-file-text-o"></i>Add New Plates</li>
+                        <li><i class="fa fa-file-text-o"></i>Search For Parking Pass</li>
                     </ol>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
                     <section class="panel">
-                        <header id="plateHeader" class="panel-heading">
-                        Add Plate Information
+                        <header class="panel-heading">
+                        Search Below
                         </header>
                         <div class="panel-body">
-                        <form class="form-validate form-horizontal" method="get" id="plate_form">
+                        <form class="form-horizontal " method="get">
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">License Plate <span class="required">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="plate" required/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                            <label class="col-sm-2 control-label">Car Description <span class="required">*</span></label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="description" required/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                            <label class="col-sm-2 control-label">Parking Lot ID <span class="required">*</span></label>
-                                <div class="col-sm-10">
-                                    <select class="form-control m-bot15" id="lot_id" required>
+                                    Search by:
+                                    <select id="searchCriteria" class="form-control m-bot15">
+                                        <option>License Plate</option>
+                                        <option>Driver First Name</option>
+                                        <option>Driver Last Name</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                            <label class="col-sm-2 control-label">Vehicle Pass Type <span class="required">*</span></label>
                                 <div class="col-sm-10">
-                                    <select class="form-control m-bot15" id="pass_type" required>
-                                        <option>Full Time</option>
-                                        <option>Temporary</option>
-                                    </select>
+                                    <input type="text" class="form-control" id="searchContent">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="control-label col-sm-2">Date Issued <span class="required">*</span></label>
-                                <div class="col-sm-10">
-                                    <input id="dp1" type="text" size="16" class="form-control" required/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-lg-2 control-label">Information</label>
-                                <div class="col-lg-10">
-                                    <p class="form-control-static">Full Time Passes are granted for four month periods.</p>
-                                    <p class="form-control-static">Temporary passes are granted for a 3 day period.</p>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-primary" onclick="submitPlate()">Add Plate</button>
+                            <button type="button" onclick="search()" class="btn btn-primary">Search</button>
                         </form>
                         </div>
-                    </section>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                    <section class="panel">
+                        <header class="panel-heading">
+                        Search Results
+                        </header>
+                        <div class="panel-body">
+                        <form class="form-horizontal " method="get">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <table class="table table-striped table-advance table-hover" id="searchResults">
+                                        <thead>
+                                        <tr>
+                                            <th>Owner Name</th>
+                                            <th>License Plate</th>
+                                            <th>Vehicle Description</th>
+                                            <th>Parking Pass Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="license_plates">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
                     </div>
                 </div>
             <!-- page end-->
@@ -518,7 +518,7 @@
     <!-- ck editor -->
     <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
     <!-- custom form component script for this page-->
-    <script src="js/form-component.js"></script>
+    <!-- script src="js/form-component.js"></script-->
     <!-- custome script for all page -->
     <script src="js/scripts.js"></script>
 
@@ -537,9 +537,7 @@
         };
         firebase.initializeApp(config);
     </script>
-    <script src="license_plate.js"></script>
-    <script src="user_query_check.js"></script>
-
+    <script src="parking_pass.js"></script>
 
     </body>
 

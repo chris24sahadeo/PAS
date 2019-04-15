@@ -1,9 +1,9 @@
 var db = firebase.firestore();
 
 function submitUser(){
-    var fname = document.forms["user_form"]["fname"].value; 
-    var lname = document.forms["user_form"]["lname"].value; 
-    var email = document.forms["user_form"]["email"].value;
+    var fname = document.forms["user_form"]["fname"].value.toLowerCase(); 
+    var lname = document.forms["user_form"]["lname"].value.toLowerCase(); 
+    var email = document.forms["user_form"]["email"].value.toLowerCase();
     var pnumber = document.forms["user_form"]["pnumber"].value;
 
     if (fname == "" || lname == "" || email == "" || pnumber == "") {
@@ -47,9 +47,9 @@ function submitPlate(){
     queryString = queryString.substring(1);
     var queries = queryString.split("&");
 
-    var plate = document.forms["plate_form"]["plate"].value; 
-    var description = document.forms["plate_form"]["description"].value; 
-    var lot_id = document.forms["plate_form"]["lot_id"].value;
+    var plate = document.forms["plate_form"]["plate"].value.toLowerCase(); 
+    var description = document.forms["plate_form"]["description"].value.toLowerCase(); 
+    var lot_id = document.forms["plate_form"]["lot_id"].value.toLowerCase();
     var pass_type = document.forms["plate_form"]["pass_type"].value;
     var date = document.forms["plate_form"]["dp1"].value;
 
@@ -107,7 +107,7 @@ function submitPlate(){
 
 function search() {
     let searchTable = document.getElementById("searchCriteria").selectedIndex;
-    let searchContent = document.getElementById("searchContent").value;
+    let searchContent = document.getElementById("searchContent").value.toLowerCase();
 
     if (searchTable == 0) {
         db.collection("license_plates").doc(searchContent).get().then(function (data) {
@@ -116,13 +116,14 @@ function search() {
             if (data.exists) {
                 db.collection("users").doc(data.data().owner_id).get().then(function (data2) {
                     if (data2.exists) {
-                        const owner = data2.data().first_name + " " + data2.data().last_name;
+                        const owner = data2.data().first_name.charAt(0).toUpperCase() + data2.data().first_name.slice(1) + " " 
+                                    + data2.data().last_name.charAt(0).toUpperCase() + data2.data().last_name.slice(1);
                         content += '<tr>';
                         content += '<td>' + owner +'</td>';
                         content += '<td>' + searchContent +'</td>';
                         content += '<td>' + data.data().vehicle_description +'</td>';
                         content += '<td><div class="btn-group"><a class="btn btn-success" onclick="edit(this, 1)" data-toggle="tooltip" title="Edit User"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this, 1)" data-toggle="tooltip" title="Delete User"><i class="icon_close_alt2"></i></a></div></td>';
-                        content += '<td><div class="btn-group"><a class="btn btn-success" onclick="edit(this, 2)" data-toggle="tooltip" title="Edit License Plate"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this, 2)" data-toggle="tooltip" title="Delete License Plate"><i class="icon_close_alt2"></i></a></div></td>';
+                        content += '<td><div class="btn-group"><a class="btn btn-primary" onclick="addNew(this)" data-toggle="tooltip" title="Add New License Plate"><i class="icon_plus"></i></a><a class="btn btn-success" onclick="edit(this, 2)" data-toggle="tooltip" title="Edit License Plate"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this, 2)" data-toggle="tooltip" title="Delete License Plate"><i class="icon_close_alt2"></i></a></div></td>';
                         content += '</tr>';
                         $('#license_plates').append(content);
                     }
@@ -150,23 +151,27 @@ function search() {
                         data.data().plates.forEach(element => {
                             db.collection("license_plates").doc(element).get().then(function(data2) {
                                 if (data2.exists) {
+                                    const owner = data.data().first_name.charAt(0).toUpperCase() + data.data().first_name.slice(1) + " " 
+                                                + data.data().last_name.charAt(0).toUpperCase() + data.data().last_name.slice(1);
                                     content = '<tr>';
-                                    content += '<td>' + data.data().first_name + " " + data.data().last_name +'</td>';
+                                    content += '<td>' + owner +'</td>';
                                     content += '<td>' + element +'</td>';
                                     content += '<td>' + data2.data().vehicle_description +'</td>';
                                     content += '<td><div class="btn-group"><a class="btn btn-success" onclick="edit(this, 1)" data-toggle="tooltip" title="Edit User"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this, 1)" data-toggle="tooltip" title="Delete User"><i class="icon_close_alt2"></i></a></div></td>';
-                                    content += '<td><div class="btn-group"><a class="btn btn-success" onclick="edit(this, 2)" data-toggle="tooltip" title="Edit License Plate"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this, 2)" data-toggle="tooltip" title="Delete License Plate"><i class="icon_close_alt2"></i></a></div></td>';
+                                    content += '<td><div class="btn-group"><a class="btn btn-primary" onclick="addNew(this)" data-toggle="tooltip" title="Add New License Plate"><i class="icon_plus"></i></a><a class="btn btn-success" onclick="edit(this, 2)" data-toggle="tooltip" title="Edit License Plate"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this, 2)" data-toggle="tooltip" title="Delete License Plate"><i class="icon_close_alt2"></i></a></div></td>';
                                     content += '</tr>';
                                     $('#license_plates').append(content);
                                 }
                             });
                         });
                     } else {
+                        const owner = data.data().first_name.charAt(0).toUpperCase() + data.data().first_name.slice(1) + " " 
+                                    + data.data().last_name.charAt(0).toUpperCase() + data.data().last_name.slice(1);
                         content = '<tr>';
-                        content += '<td>' + data.data().first_name + " " + data.data().last_name +'</td>';
+                        content += '<td>' + owner +'</td>';
                         content += '<td colspan=2>NO PLATES FOUND FOR THIS USER</td>';
                         content += '<td><div class="btn-group"><a class="btn btn-success" onclick="edit(this, 1)" data-toggle="tooltip" title="Edit User"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this, 1)" data-toggle="tooltip" title="Delete User"><i class="icon_close_alt2"></i></a></div></td>';
-                        content += '<td><div class="btn-group"><a class="btn btn-success" onclick="edit(this, 2)" data-toggle="tooltip" title="Edit License Plate"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this, 2)" data-toggle="tooltip" title="Delete License Plate"><i class="icon_close_alt2"></i></a></div></td>';
+                        content += '<td><div class="btn-group"><a class="btn btn-primary" onclick="addNew(this)" data-toggle="tooltip" title="Add New License Plate"><i class="icon_plus"></i></a></td>';
                         content += '</tr>';
                         $('#license_plates').append(content);
                     }
@@ -181,6 +186,42 @@ function search() {
     } 
 }
 
+function addNew(row) {
+    // console.log("Row:" + row.closest('tr').rowIndex);
+    var myTable = document.getElementById("searchResults");
+    var myCells = myTable.rows.item(row.closest('tr').rowIndex).cells;
+    var cellLength = myCells.length;
+
+    // 1 == license plate - going to use this index to get owner id if necessary
+    var plate_id = myCells.item(1).innerHTML.toLowerCase();
+
+    if (plate_id != "NO PLATES FOUND FOR THIS USER".toLowerCase()) {
+        // get user id and then redirect window
+        db.collection("license_plates").doc(plate_id).get().then(function (doc) {
+            window.location.href="license_plate_add_plate.html?" + doc.data().owner_id;
+        });
+    } else {
+        // No Plates Found
+        let name = myCells.item(0).innerHTML.split(" ");
+        let first_name = name[0].toLowerCase();
+        let last_name = name[1].toLowerCase();
+
+        db.collection("users").where("first_name", "==", first_name).where("last_name", "==", last_name).get().then(function (querySnapshot) {
+            if (!(querySnapshot.empty)) {
+                querySnapshot.forEach(data => {
+                    if (!(data.data().plates.length > 0)) {
+                        var owner_id = data.id;
+                        window.location.href="license_plate_add_plate.html?" + owner_id;
+                        return;
+                    }
+                });
+            } else {
+                console.log("no existo");
+            }
+        });
+    }
+}
+
 function edit(row, user_or_plate) {
     // console.log("Row:" + row.closest('tr').rowIndex);
     var myTable = document.getElementById("searchResults");
@@ -188,8 +229,7 @@ function edit(row, user_or_plate) {
     var cellLength = myCells.length;
 
     // 1 == license plate - going to use this index to get owner id if necessary
-    var plate_id = myCells.item(1).innerHTML;
-
+    var plate_id = myCells.item(1).innerHTML.toLowerCase();
     
     if (user_or_plate == 1) {
         // User
@@ -199,7 +239,7 @@ function edit(row, user_or_plate) {
         });
     } else if (user_or_plate == 2) {
         // License Plate
-        if (plate_id != "NO PLATES FOUND FOR THIS USER") {
+        if (plate_id != "NO PLATES FOUND FOR THIS USER".toLowerCase()) {
             // redirect window with plate id
             window.location.href="license_plate_edit_plate.html?" + plate_id;
         } else {
@@ -214,11 +254,11 @@ function del(row, user_or_plate) {
     var cellLength = myCells.length;
 
     // 1 == license plate - going to use this index to get owner id if necessary
-    var plate_id = myCells.item(1).innerHTML;
+    var plate_id = myCells.item(1).innerHTML.toLowerCase();
 
     if (user_or_plate == 1) {
         // User
-        if (plate_id != "NO PLATES FOUND FOR THIS USER") {
+        if (plate_id != "NO PLATES FOUND FOR THIS USER".toLowerCase()) {
             var confirmation = confirm("Are you sure?\n\nDeleting a user will remove all of their respective license plates as well.");
             if (confirmation) {
                 console.log("Deleting User");
@@ -229,8 +269,8 @@ function del(row, user_or_plate) {
         } else {
             // No license plates to use to find user to delete user
             let name = myCells.item(0).innerHTML.split(" ");
-            let first_name = name[0];
-            let last_name = name[1];
+            let first_name = name[0].toLowerCase();
+            let last_name = name[1].toLowerCase();
             db.collection("users").where("first_name", "==", first_name).where("last_name", "==", last_name).get().then(function (querySnapshot) {
                 if (!(querySnapshot.empty)) {
                     querySnapshot.forEach(data => {
@@ -275,7 +315,7 @@ function del(row, user_or_plate) {
         });
     } else if (user_or_plate == 2) {
         // License Plate
-        if (plate_id != "NO PLATES FOUND FOR THIS USER") {
+        if (plate_id != "NO PLATES FOUND FOR THIS USER".toLowerCase()) {
             var confirmation = confirm("Are you sure you want to delete the license plate from the user?");
             if (confirmation) {
                 console.log("Deleting License Plate.");

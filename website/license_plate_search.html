@@ -314,74 +314,94 @@
         </header>
         <!--header end-->
 
-                <!--sidebar start-->
-                <aside>
-                        <div id="sidebar" class="nav-collapse ">
-                          <!-- sidebar menu start-->
-                          <ul class="sidebar-menu">
-                            <li class="active">
-                              <a class="" href="index.html">
-                                            <i class="icon_house_alt"></i>
-                                            <span>Dashboard</span>
-                                        </a>
-                            </li>
-                            <li class="sub-menu">
-                              <a href="javascript:;" class="">
-                                            <i class="icon_document_alt"></i>
-                                            <span>Forms</span>
-                                            <span class="menu-arrow arrow_carrot-right"></span>
-                                        </a>
-                              <ul class="sub">
-                                <!--<li><a class="" href="add-parking-lot.html">Add Parking Lot</a></li>-->
-                                <li><a id="add_parking_lot" onclick="authUser(this.id)">Add Parking Lot</a></li>
-                                <li><a id="add_security_officer" onclick="authUser(this.id)">Add Security Officer</a></li>
-                              </ul>
-                            </li>
-                            <li class="sub-menu">
-                              <a href="javascript:;" class="">
-                                            <i class="icon_desktop"></i>
-                                            <span>Parking Lots</span>
-                                            <span class="menu-arrow arrow_carrot-right"></span>
-                                        </a>
-                              <ul class="sub">
-                                <li><a class="" href="search-parking-lot.html">Search/Remove/Edit</a></li>
-                                <li><a class="" href="display-parking-lots.html">View Parking Lots</a></li>
-                                <!--<li><a class="" href="grids.html">Grids</a></li>-->
-                              </ul>
-                            </li>
-                  
-                            <li class="sub-menu">
-                              <a href="javascript:;" class="">
-                                            <i class="icon_table"></i>
-                                            <span>Security Officers</span>
-                                            <span class="menu-arrow arrow_carrot-right"></span>
-                                        </a>
-                              <ul class="sub">
-                                <li><a class="" href="search-security-officer.html">Search/Remove/Edit</a></li>
-                                <li><a class="" href="display-security-officers.html">View Security Officers</a></li>
-                              </ul>
-                            </li>
-                  
-                            <li class="sub-menu">
-                              <a href="javascript:;" class="">
-                                            <i class="icon_documents_alt"></i>
-                                            <span>Pages</span>
-                                            <span class="menu-arrow arrow_carrot-right"></span>
-                                        </a>
-                              <ul class="sub">
-                                <li><a class="" href="profile.html">Profile</a></li>
-                                <li><a class="" href="login.html"><span>Login Page</span></a></li>
-                                <li><a class="" href="contact.html"><span>Contact Page</span></a></li>
-                                <li><a class="" href="blank.html">Blank Page</a></li>
-                                <li><a class="" href="404.html">404 Error</a></li>
-                              </ul>
-                            </li>
-                  
-                          </ul>
-                          <!-- sidebar menu end-->
-                        </div>
-                      </aside>
-                    <!--sidebar end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse ">
+                <!-- sidebar menu start-->
+                <ul class="sidebar-menu">
+                <li class="active">
+                    <a class="" href="index.html">
+                                <i class="icon_house_alt"></i>
+                                <span>Dashboard</span>
+                            </a>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                                <i class="icon_document_alt"></i>
+                                <span>Forms</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                    <ul class="sub">
+                    <!--<li><a class="" href="add-parking-lot.html">Add Parking Lot</a></li>-->
+                    <li><a id="add_parking_lot" onclick="authUser(this.id)">Add Parking Lot</a></li>
+                    <li><a id="add_security_officer" onclick="authUser(this.id)">Add Security Officer</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                                <i class="icon_desktop"></i>
+                                <span>Parking Lots</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                    <ul class="sub">
+                    <li><a class="" href="search-parking-lot.html">Search/Remove/Edit</a></li>
+                    <li><a class="" href="display-parking-lots.html">View Parking Lots</a></li>
+                    <!--<li><a class="" href="grids.html">Grids</a></li>-->
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                                <i class="icon_contacts_alt"></i>
+                                <span>Driver Info</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                    <ul class="sub">
+                    <li><a class="" href="license_plate_search.html">Search/Remove/Edit</a></li>
+                    <li><a class="" href="license_plate_add_user.html">Add Driver</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                                <i class="icon_document"></i>
+                                <span>Pass Renewal</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                    <ul class="sub">
+                    <li><a class="" href="license_plate_search.html">Search</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                                <i class="icon_table"></i>
+                                <span>Security Officers</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                    <ul class="sub">
+                    <li><a class="" href="search-security-officer.html">Search/Remove/Edit</a></li>
+                    <li><a class="" href="display-security-officers.html">View Security Officers</a></li>
+                    </ul>
+                </li>
+        
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                                <i class="icon_documents_alt"></i>
+                                <span>Pages</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                    <ul class="sub">
+                    <li><a class="" href="profile.html">Profile</a></li>
+                    <li><a class="" href="login.html"><span>Login Page</span></a></li>
+                    <li><a class="" href="contact.html"><span>Contact Page</span></a></li>
+                    <li><a class="" href="blank.html">Blank Page</a></li>
+                    <li><a class="" href="404.html">404 Error</a></li>
+                    </ul>
+                </li>
+        
+                </ul>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
 
         <!--main content start-->
         <section id="main-content">
