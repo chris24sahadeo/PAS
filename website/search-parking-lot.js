@@ -27,10 +27,15 @@ function search() {
                 content += '<td>' + doc.data().current_occupancy +'</td>';
                 content += '<td>' + doc.data().security_officer_id +'</td>';
 
-                content += '<td><div class="btn-group"><a class="btn btn-success" onclick="edit(0)"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this)"><i class="icon_close_alt2"></i></a></div></td>';
+                content += '<td><div class="btn-group"><a class="btn btn-success" onclick="edit(this)"><i class="icon_pencil-edit_alt"></i></a><a class="btn btn-danger" onclick="del(this)"><i class="icon_close_alt2"></i></a></div></td>';
                 content += '</tr>';
+                var remaining = doc.data().max_occupancy - doc.data().current_occupancy;
+                if(remaining < 5)
+                    alert("Nearly FULL!");
+
                 document.getElementById("parking_lots").innerHTML = "";
                 $('#parking_lots').append(content);
+
             }
         })
         .catch(err => {
@@ -41,6 +46,18 @@ function search() {
 
 function edit(row) {
     console.log("Row:" + row.closest('tr').rowIndex);
+
+    var myTable = document.getElementById("searchResults");
+    var myCells = myTable.rows.item(row.closest('tr').rowIndex).cells;
+    var cellLength = myCells.length;
+
+    // 1 == license plate - going to use this index to get owner id if necessary
+    var parking_lot_id = myCells.item(0).innerHTML;
+    console.log("Parking lot id: ", parking_lot_id);
+
+    db.collection("parking_lots").doc(parking_lot_id).get().then(function (doc) {
+        window.location.href="edit-parking-lot.html?" + doc.id;
+    });
 }
 
 function del(row) {

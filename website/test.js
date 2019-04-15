@@ -27,13 +27,13 @@ var VALID = -1;
             if(doc.data().email == userEmail){
               console.log("Found email...");
               VALID = 1;
-              window.location.replace("index.html");
+              window.location.replace("home.html");
             }
         });
 
         if(VALID == -1){
             //invalid user
-            window.location.replace("login.html");
+            window.location.replace("index.html");
             //alert("INVALID LOGIN");
         }
     });  
@@ -43,7 +43,7 @@ var VALID = -1;
       //redirect to login page
       uid = null;
       alert("Invalid email address");
-      window.location.replace("login.html");
+      window.location.replace("index.html");
     }
 
   });

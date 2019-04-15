@@ -25,7 +25,7 @@ function doSomething(){
     //insert row
     //var newRow = tableRef.insertRow(tableRef.rows.length);
     
-    //insert cell
+    //insert cellgi
     //var newCell = newRow.insertCell(0);
 
     db.collection("parking_lots").get().then(function(querySnapshot) {
@@ -44,12 +44,12 @@ function doSomething(){
             //newCell.appendChild(text);
         });
         
-        console.log("Record: ",data);
+        //console.log("Record: ",data);
         // Split in group of 3 items
         var record = chunkArray(data, 5);
         //console.log(result); //all records in [ [],[],[] ]
         //console.log("Test:",record[0][0]); //1 record []
-        console.log("Num Records: ",record.length);
+        //console.log("Num Records: ",record.length);
 
         
         for(var i = 0; i < record.length; i++){

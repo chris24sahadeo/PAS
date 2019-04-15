@@ -4,29 +4,46 @@
 var firebase = app_firebase;
 var db = firebase.firestore();    
 
+var ADMIN_ROLE = 3;
+
 var emaill = userEmail;
 console.log("Email address in form: ",emaill);
 
 
-/*
-db.collection("cities").doc("LA").set({
-    name: "Los Angeles",
-    state: "CA",
-    country: "USA"
-})
-.then(function() {
-    console.log("Document successfully written!");
-})
-.catch(function(error) {
-    console.error("Error writing document: ", error);
-});
-*/
+function validate(){
+    db.collection("staff").get().then(function(querySnapshot) {
+      var data = -1;
+      var isAdmin = -1;
+      querySnapshot.forEach(function(doc) {
+        
+          console.log(doc.id, " => ", doc.data());
+          //if email exists in staff collection
+          if(doc.data().email == userEmail){
+            console.log("Found email...");
+            data = 1;
+            //if user is admin
+            if(doc.data().role == ADMIN_ROLE){
+              console.log("Admin rights for: ", userEmail);
+              isAdmin = 1;
+            }
+          }
+  
+      });
+          if(isAdmin == -1){
+            //alert("You are not an ADMIN");
+            window.location.replace("home.html");
+          }
+            
+          if(data == -1)
+            console.log("Did not find email in DB...");
+  });
+  }
 
 
 var Script = function () {
 
     $.validator.setDefaults({
-        submitHandler: function() { alert("Successfully added security officer!"); }
+        submitHandler: function() { console.log("Processing..."); }
     });
 
     $().ready(function() {
@@ -94,7 +111,74 @@ function submitUser(){
     lname = lname.toLowerCase();
     email = email.toLowerCase();
     sid = sid.toLowerCase();
-    
+
+    var FLAG = -1;
+
+    if(sid != ""){
+        db.collection("staff").get().then(function(querySnapshot) {
+            console.log(querySnapshot);
+            querySnapshot.forEach(function(doc) {
+            if (doc.id == sid){
+                //officer id exists
+                console.log("Doc id: ", doc.id);
+                console.log("Security officer id: ", sid);
+                FLAG = 1;
+                alert("Security officer exists..\nRe-enter security officer info");
+                return;
+            }
+
+            });
+            //parking lot id does not exist; can ADD
+                 //add
+                 db.collection("staff").doc(sid).set({
+                    first_name: fname,
+                    last_name: lname,
+                    email: email,
+                    role: 4,
+                    //security_officer_id: sid,
+                    phone_number: cnumber
+                })
+                .then(function() {
+                    console.log("Document successfully written!");
+                    alert("Successfully added security officer!");
+                    window.location.replace("add-security-officer.html");
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                });
+                      /*      
+            if (FLAG == -1){
+                
+                //check to ensure security officer exists
+                if(sid != ""){
+                        db.collection("staff").get().then(function(querySnapshot) {
+                            console.log(querySnapshot);
+                            querySnapshot.forEach(function(doc) {
+                            if (doc.id == sid){
+                                //security officer id exists
+                                console.log("Doc id: ", doc.id);
+                                console.log("Officer id: ", psecurity_officer_id);
+                                FLAG = 1;
+
+               
+                            }
+
+                            });
+
+                            if (FLAG == -1){
+                                //id does not exists
+                                alert("Security officer does not exists..\nRe-enter security officer ID");
+                                return;
+                            }
+                        });
+                        //security officer id is
+                    }
+
+            }*/
+        });
+        //security officer id is
+    }
+    /*
     db.collection("staff").doc(sid).set({
         first_name: fname,
         last_name: lname,
@@ -110,7 +194,7 @@ function submitUser(){
     })
     .catch(function(error) {
         console.error("Error writing document: ", error);
-    });
+    });*/
 
 
 }
