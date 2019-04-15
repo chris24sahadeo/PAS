@@ -57,12 +57,28 @@ class Distance_Sensor:
             time.sleep(1)
             return distance
         
+        except KeyboardInterrupt:
+            print('PAS Shutting down from distance_sensor.py')
+            GPIO.cleanup()
+            exit()
+                
         except:
-            print('Distance sensor read error')
+            print('Distance sensor read error 1')
+            return 
     
     
     def object_detected(self):
-        return self.get_distance() <= self.MIN_OBJECT_DETECTION_DISTANCE
+        try:
+            detected = self.get_distance() <= self.MIN_OBJECT_DETECTION_DISTANCE
+        except TypeError:
+            print('Distance sensor read error 2: Type error')
+        if(detected):
+            print('Vehicle detected')
+        else:
+            print('No vehicle detected')
+        time.sleep(1)
+        return detected
+        
         
         
     

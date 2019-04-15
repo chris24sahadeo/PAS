@@ -3,15 +3,18 @@ import time
 
 class Remote:
     
-    PULSE_DURATION = 2
+    PULSE_DURATION = 1
     
     
-    def __init__(self):
+    def __init__(self, IN = 18, OUT = 23):
         GPIO.setmode(GPIO.BCM)
-        self.IN = 18
+        self.IN = IN
         GPIO.setup(self.IN, GPIO.OUT)
-        self.OUT = 23
+        GPIO.output(self.IN, GPIO.HIGH)
+        self.OUT = OUT
         GPIO.setup(self.OUT, GPIO.OUT)
+        GPIO.output(self.OUT, GPIO.HIGH)
+        print('Barrier remote init successful')
         
     
     def raise_barrier(self, barrier='IN'):
@@ -25,9 +28,9 @@ class Remote:
             return -1
             
         print('Opening {} Barrier on pin {}'.format(barrier, PIN))
-        GPIO.output(PIN, GPIO.HIGH)
-        time.sleep(self.PULSE_DURATION)
         GPIO.output(PIN, GPIO.LOW)
+        time.sleep(self.PULSE_DURATION)
+        GPIO.output(PIN, GPIO.HIGH)
         print('System paused to prevent signal overload')
         time.sleep(self.PULSE_DURATION)
         

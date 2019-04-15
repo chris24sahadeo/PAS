@@ -17,6 +17,7 @@ class OCR_Cloud:
     def __init__(self, camera, distance_sensor):
         self.camera = camera
         self.distance_sensor = distance_sensor
+        print('OCR init successful')
         
         
     def perform_ocr(self):
