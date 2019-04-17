@@ -32,9 +32,11 @@ rm = Remote()
 #time.sleep(SLEEP_1)
 
 cam = picamera.PiCamera()
+cam.vflip = True
+cam.hflip = True
 #time.sleep(SLEEP_1)
 
-ds = Distance_Sensor()
+ds = Distance_Sensor(min_distance = 80)
 #time.sleep(SLEEP_1)
 
 ocr = OCR_Cloud(cam, ds)

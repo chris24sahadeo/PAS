@@ -59,6 +59,7 @@ class Database():
     
     
     def is_valid_plate(self, plate):
+        '''
         plate_doc = self.get_plate(plate)
         if(plate_doc == False): # check if plate is in db
             return False
@@ -67,6 +68,8 @@ class Database():
         # check if plate is allowed to park in that lot
         
         print('Plate is valid')
+        '''
+        return self.get_plate(plate)
     
     
     def parking_lot_has_space(self):
