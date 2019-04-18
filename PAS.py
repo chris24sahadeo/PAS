@@ -27,16 +27,17 @@ print('Initializing objects...')
 parking_lot = 'fst'
 barrier = 'IN'
 SLEEP_1 = 1
+SLEEP_2 = 3
 
 rm = Remote()
 #time.sleep(SLEEP_1)
 
 cam = picamera.PiCamera()
-cam.vflip = True
-cam.hflip = True
+#cam.vflip = True
+#cam.hflip = True
 #time.sleep(SLEEP_1)
 
-ds = Distance_Sensor(min_distance = 80)
+ds = Distance_Sensor(min_distance = 100)
 #time.sleep(SLEEP_1)
 
 ocr = OCR_Cloud(cam, ds)
@@ -64,6 +65,9 @@ try: # stops upon Ctrl+C
         
         # checks if parking lot has space
         if(db.parking_lot_has_space()):
+            
+            # pause allowing car to settle
+            time.sleep(SLEEP_2)
             
             # taking picture of license plate and performing ocr
             plate = ocr.perform_ocr()

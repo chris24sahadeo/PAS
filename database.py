@@ -23,7 +23,7 @@ Created with CodePilot.ai
 
 # increment count
 # check expiration 
-
+from datetime import datetime, timedelta
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
@@ -51,6 +51,8 @@ class Database():
         try:
             doc = doc_ref.get()
             plate_doc = doc.to_dict()
+            if(plate_doc is None):
+                return False
             print(u'Plate data: {}'.format(plate_doc))
             return plate_doc
         except google.cloud.exceptions.NotFound:
@@ -59,17 +61,26 @@ class Database():
     
     
     def is_valid_plate(self, plate):
-        '''
+        
         plate_doc = self.get_plate(plate)
         if(plate_doc == False): # check if plate is in db
             return False
-        if(plate_doc[u'ex']): # check if plate is expired
-            
+        
+        expiry_date = datetime.strptime(plate_doc[u'expiry_date'], "%d/%m/%Y")
+        if(expiry_date < datetime.now()): # check if plate is expired
+            print('Plate expired!')
+            return False
+        
         # check if plate is allowed to park in that lot
+        if(plate_doc[u'parking_lot_id'] != self.parking_lot):
+            print('Can\'t park here ')
+            return False
         
         print('Plate is valid')
-        '''
-        return self.get_plate(plate)
+        return plate_doc
+        
+        # commnet all above an uncomment the line below
+        # return self.get_plate(plate)
     
     
     def parking_lot_has_space(self):
