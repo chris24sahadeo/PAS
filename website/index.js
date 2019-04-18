@@ -27,6 +27,7 @@ var ADMIN_ROLE = 3;
 var mainApp = {};
 
 var userEmail;
+var name; 
 
 (function (){
   var firebase = app_firebase;
@@ -39,6 +40,26 @@ var userEmail;
 
       userEmail = user.email;
       console.log("Email log in: ", userEmail);
+
+
+    //customise name on top bar
+    db.collection("staff").get().then(function(querySnapshot) {
+
+      querySnapshot.forEach(function(doc) {
+        var data = -1;
+          //console.log(doc.id, " => ", doc.data());
+          //if email exists in staff collection
+          if(doc.data().email == userEmail){
+            data = 1;
+            console.log("Found email...");
+            name = doc.data().first_name + " " + doc.data().last_name;
+          }
+  
+      });   
+        
+  });  
+
+      document.getElementById("u_name").innerHTML = name;
       //console.log("User record: ",user.toJSON());
 
     }else{
