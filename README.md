@@ -7,10 +7,7 @@ This `readme` is a very brief overview of the University of the West Indies Unde
 
 For full documentation of the project, see the [Final Project Document](https://docs.google.com/document/d/1D05I-PZ11wCX9HCOwYlwmzHtLbTIKDZsj3kiXzwSIww/edit?usp=sharing)
 
----
-<a href="https://www.youtube.com/watch?v=vRkwVC5I1A8
-" target="_blank"><img src="https://www.youtube.com/watch?v=vRkwVC5I1A8" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
 
 ---
 # What is PAS?
