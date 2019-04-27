@@ -1,4 +1,6 @@
 '''
+Code to fetch documents from Cloud firestore by license plate key
+
 https://gist.github.com/ianakelly/2af989602c55f80aaf7f40b8f90d36a9
 I noticed that I was missing gcloud app Python and Python Extentions
 

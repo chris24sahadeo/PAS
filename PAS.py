@@ -9,6 +9,10 @@
 
 # ====================================================
 
+'''
+This script is ran on system startup and is terminated only by a KeyboardInterrupt.
+It initialises all relevant modules used by the barrier control system and starts an infinite loop.
+'''
 
 
 # imports

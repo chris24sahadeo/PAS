@@ -1,3 +1,7 @@
+'''
+Class to control the relay which in turn controls the barrier remote to raise the barrier
+'''
+
 import RPi.GPIO as GPIO
 import time
 

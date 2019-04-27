@@ -1,12 +1,6 @@
 # exception handling
 '''
-Distance sensor read error
-Traceback (most recent call last):
-  File "/home/pi/Desktop/PAS/PAS.py", line 24, in <module>
-    while(not ds.object_detected()):
-  File "/home/pi/Desktop/PAS/distance_sensor.py", line 56, in object_detected
-    return self.get_distance() <= self.MIN_OBJECT_DETECTION_DISTANCE
-TypeError: unorderable types: NoneType() <= int()
+Distance sensor code
 '''
 
 # import constants

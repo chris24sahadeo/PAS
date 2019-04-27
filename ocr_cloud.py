@@ -1,3 +1,8 @@
+'''
+Class to take a picture using the Pi Camera and make a POST request to the OpenALPR cloud service.
+OpenALPR returns a string representing the vehicle's license plate number
+'''
+
 # exceptions:
 # no internet access
 # keep looping (taking pictures) until plate recognised and validated OR object moved (need another object check here)
