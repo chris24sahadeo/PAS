@@ -11,7 +11,7 @@ OpenALPR returns a string representing the vehicle's license plate number
 import requests
 import base64
 import json
-import picamera
+# import picamera
 import time
 
 
@@ -25,11 +25,12 @@ class OCR_Cloud:
         print('OCR init successful')
         
         
-    def perform_ocr(self):
+    def perform_ocr(self, IMAGE_PATH=None):
         # if no image provided then take a picture with the camera
-        IMAGE_PATH = 'images/image.jpg'
-        print('Scanning licence plate')
-        self.camera.capture(IMAGE_PATH)
+        if IMAGE_PATH is None:
+            IMAGE_PATH = 'images/image.jpg'
+            print('Scanning licence plate')
+            self.camera.capture(IMAGE_PATH)
         
         # encoding the image as binary data
         print('Converting image.jpg to binary data...')
